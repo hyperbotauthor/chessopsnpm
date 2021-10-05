@@ -1,0 +1,32 @@
+{
+  "name": "@publishvue/chessops",
+  "version": "1.0.0",
+  "description": "Chessops bundled for npm with convenience functions.",
+  "main": "dist/chessops.js",
+  "scripts": {
+    "tsc": "cd chessops && yarn && npm run compile",
+    "build": "npx rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyperbotauthor/chessopsnpm.git"
+  },
+  "keywords": [
+    "chessops",
+    "npm",
+    "convenience",
+    "wrapper"
+  ],
+  "author": "hyperbotauthor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyperbotauthor/chessopsnpm/issues"
+  },
+  "homepage": "https://github.com/hyperbotauthor/chessopsnpm#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "rollup": "^2.58.0"
+  }
+}
