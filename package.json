@@ -1,6 +1,6 @@
 {
   "name": "@publishvue/chessops",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chessops bundled for npm with convenience functions.",
   "main": "dist/chessops.js",
   "scripts": {
