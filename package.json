@@ -5,8 +5,8 @@
   "main": "dist/chessops.js",
   "scripts": {
     "tsc": "cd chessops && yarn && npm run compile",
-    "build": "npx rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "test": "jest ./tests"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
+    "jest": "^27.2.4",
     "rollup": "^2.58.0"
   }
 }
