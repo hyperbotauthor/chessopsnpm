@@ -8,11 +8,19 @@ import {makeFen, parseFen} from "../chessops/fen"
 
 import {parseUci, makeUci} from "../chessops/util";
 
+import { chessgroundDests as chessgroundDests_} from "../chessops/compat";
+
+export const chessgroundDests = pos => pos.chessgroundDests()
+
 // Pos_ is an abstraction of a chess position
 export class Pos_{
     constructor(){
         // initialize to standard chess starting position
         this.pos = Chess.default()
+    }
+
+    rawLegalUcis(){
+        return Array.from(chessgroundDests_(this.pos).entries()).map(entry => entry[1].map(dest => `${entry[0]}${dest}`)).flat()
     }
 
     setVariant(variant){

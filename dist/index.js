@@ -2159,11 +2159,41 @@ function makeFen(setup, opts) {
     ].join(' ');
 }
 
+function chessgroundDests$1(pos, opts) {
+    const result = new Map();
+    const ctx = pos.ctx();
+    for (const [from, squares] of pos.allDests(ctx)) {
+        if (squares.nonEmpty()) {
+            const d = Array.from(squares, makeSquare);
+            if (!(opts === null || opts === void 0 ? void 0 : opts.chess960) && from === ctx.king && squareFile(from) === 4) {
+                // Chessground needs both types of castling dests and filters based on
+                // a rookCastles setting.
+                if (squares.has(0))
+                    d.push('c1');
+                else if (squares.has(56))
+                    d.push('c8');
+                if (squares.has(7))
+                    d.push('g1');
+                else if (squares.has(63))
+                    d.push('g8');
+            }
+            result.set(makeSquare(from), d);
+        }
+    }
+    return result;
+}
+
+const chessgroundDests = pos => pos.chessgroundDests();
+
 // Pos_ is an abstraction of a chess position
 class Pos_{
     constructor(){
         // initialize to standard chess starting position
         this.pos = Chess.default();
+    }
+
+    rawLegalUcis(){
+        return Array.from(chessgroundDests$1(this.pos).entries()).map(entry => entry[1].map(dest => `${entry[0]}${dest}`)).flat()
     }
 
     setVariant(variant){
@@ -2251,3 +2281,4 @@ console.log("chess module initialized", pos.toString());
 
 exports.Pos = Pos;
 exports.Pos_ = Pos_;
+exports.chessgroundDests = chessgroundDests;
