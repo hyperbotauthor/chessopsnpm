@@ -2183,6 +2183,9 @@ function chessgroundDests$1(pos, opts) {
     return result;
 }
 
+const PROMOTION_PIECES = ["q", "r", "b", "n", "k"];
+const PROMOTION_PIECES_EXT = [""].concat(PROMOTION_PIECES);
+
 const chessgroundDests = pos => pos.chessgroundDests();
 
 // Pos_ is an abstraction of a chess position
@@ -2269,6 +2272,10 @@ class Pos_{
 
     toString(){
         return `[Pos ${this.pos.rules} ${this.reportFen()}]`
+    }
+
+    legalsForUci(uci){
+        return PROMOTION_PIECES_EXT.filter(pp => this.pos.isLegal(this.uciToMove(`${uci}${pp}`), this.pos.ctx())).map(pp => `${uci}${pp}`)
     }
 }
 function Pos(){

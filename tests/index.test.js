@@ -23,3 +23,30 @@ test('standard starting fen should be ' + START_FEN_STANDARD, () => {
 test('start raw legal ucis should be ' + startRawLegalUcis, () => {
     expect(arrayEquals(pos.rawLegalUcis(), startRawLegalUcis)).toBe(true);
 });
+
+const c7b8Legals = ["c7b8q", "c7b8r", "c7b8b", "c7b8n"]
+const c7c8Legals = ["c7c8q", "c7c8r", "c7c8b", "c7c8n"]
+
+test('legal ucis for c7b8 should be ' + c7b8Legals, () => {
+    // pawn can promote with capture on b8 or by push on c8
+    pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
+    expect(arrayEquals(pos.legalsForUci("c7b8"), c7b8Legals)).toBe(true);
+});
+
+test('legal ucis for c7c8 should be ' + c7c8Legals, () => {
+    // pawn can promote with capture on b8 or by push on c8
+    pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
+    expect(arrayEquals(pos.legalsForUci("c7c8"), c7c8Legals)).toBe(true);
+});
+
+test('legal ucis for a2a3 should be ' + ["a2a3"], () => {    
+    // pawn can move one square
+    pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
+    expect(arrayEquals(pos.legalsForUci("a2a3"), ["a2a3"])).toBe(true);
+});
+
+test('legal ucis for a2a5 should be ' + [], () => {    
+    // pawn cannot move three squares
+    pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
+    expect(arrayEquals(pos.legalsForUci("a2a5"), [])).toBe(true);
+});
