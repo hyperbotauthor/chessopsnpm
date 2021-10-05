@@ -50,3 +50,22 @@ test('legal ucis for a2a5 should be ' + [], () => {
     pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
     expect(arrayEquals(pos.legalsForUci("a2a5"), [])).toBe(true);
 });
+
+const allLegalSans = [
+    'Nd2',     'Na3',    'Nc3',    'Bd2',
+    'Be3',     'Bf4',    'Bg5',    'Bh6',
+    'Qd2',     'Qd3',    'Qd4',    'Qd5',
+    'Qd6',     'Qxd7+',  'Kd2',    'Nf3',
+    'Nh3',     'a3',     'a4',     'b3',
+    'b4',      'c3',     'c4',     'e3',
+    'e4',      'f3',     'f4',     'g3',
+    'g4',      'h3',     'h4',     'cxb8=Q+',
+    'cxb8=R+', 'cxb8=B', 'cxb8=N', 'c8=Q+',
+    'c8=R+',   'c8=B',   'c8=N'
+  ]
+
+  test('all legal sans should be ' + allLegalSans, () => {
+    // pawn can promote with capture on b8 or by push on c8
+    pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
+    expect(arrayEquals(pos.allLegalSans(), allLegalSans)).toBe(true);
+});

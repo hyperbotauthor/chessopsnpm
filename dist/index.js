@@ -2277,6 +2277,14 @@ class Pos_{
     legalsForUci(uci){
         return PROMOTION_PIECES_EXT.filter(pp => this.pos.isLegal(this.uciToMove(`${uci}${pp}`), this.pos.ctx())).map(pp => `${uci}${pp}`)
     }
+
+    allLegalUcis(){
+        return this.rawLegalUcis().map(uci => this.legalsForUci(uci)).flat()
+    }
+
+    allLegalSans(){
+        return this.allLegalUcis().map(uci => this.uciToSan(uci))
+    }
 }
 function Pos(){
     return new Pos_()

@@ -6,4 +6,4 @@ const pos = Pos()
 
 pos.setFen("rn2kbnr/p1Pppppp/b7/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 1 5")
 
-console.log(pos.legalsForUci("a2a5"))
+console.log(pos.allLegalSans())
