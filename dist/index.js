@@ -1392,7 +1392,8 @@ class Atomic extends Chess {
         return n.ok(undefined);
     }
     kingAttackers(square, attacker, occupied) {
-        if (kingAttacks(square).intersects(this.board.pieces(attacker, 'king'))) {
+        const attackerKings = this.board.pieces(attacker, 'king');
+        if (attackerKings.isEmpty() || kingAttacks(square).intersects(attackerKings)) {
             return SquareSet.empty();
         }
         return super.kingAttackers(square, attacker, occupied);

@@ -1,9 +1,10 @@
 {
   "name": "@publishvue/chessops",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chessops bundled for npm with convenience functions.",
   "main": "dist/index.js",
   "scripts": {
+    "prepare": "yarn tsc && yarn build",
     "tsc": "cd chessops && yarn && npm run compile",
     "build": "rollup -c",
     "test": "jest ./tests"
